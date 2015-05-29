@@ -14,13 +14,12 @@
 
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-
+		<link rel="stylesheet" href="bootstrap-colorpicker.min.css">
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
-
 	</head>
 	<body>
 		<!-- Fixed navbar -->
@@ -71,15 +70,16 @@
 			-->
 			<p class="lead"> Color blending using bitwise operators </p>
 
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="input-group">
-						<input type="text" class="form-control" id="color1" value="FF00FF">
-						<input type="text" class="form-control" id="color2" value="00FFFF">
-						<button class="btn btn-default" type="button" id="blendButton">Blend!</button>
-					</div><!-- /input-group -->
-				</div><!-- /.col-lg-6 -->
-			</div><!-- /.row -->
+			<div class="col-lg-6">
+			<div class="input-group color1">
+					<input type="text" value="#654321" class="form-control" id="color1text" />
+					<span class="input-group-addon"><i></i></span>
+				</div>
+			<div class="input-group color2">
+					<input type="text" value="#123456" class="form-control" id="color2text"/>
+					<span class="input-group-addon"><i></i></span>
+			</div>
+
 			<p id="andResult">#ffff00</p>
 			<div class="row">
 				<div class="col-lg-6">
@@ -102,58 +102,12 @@
 		<!-- Bootstrap core JavaScript
 		================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
+		<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-		<script>
-function and(x,y){
-	return x & y;
-}
-function or(x,y){
-	return x | y;
-}
-function xor(x,y){
-	return x ^ y;
-}
-function blend(hex1, hex2, op){
-	return intToHexStr(op(hexStrToInt(hex1), hexStrToInt(hex2)));
-}
-
-String.prototype.repeat = function( num )
-{
-	return new Array( num + 1 ).join( this );
-}
-function hexStrToInt(hexStr){
-	var i = 1;
-	if(hexStr.indexOf("#") == -1){
-		i = 0;
-	}
-	return parseInt(hexStr.substring(i),16);
-}
-
-function intToHexStr(i){
-	var s = i.toString(16);
-	return "#"+"0".repeat(6-s.length)+s;
-}
-
-$(function(){
-	var blendFunc = function(){
-		var c1 = $("#color1")[0].value;
-		var c2 = $("#color2")[0].value;
-		var andResult = blend(c1, c2, and);
-		var orResult = blend(c2, c2, or);
-		var xorResult = blend(c1, c2, xor);
-		$("#andCanvas").css("background", andResult);
-		$("#andResult").text( "AND: " + andResult);
-		$("#orCanvas").css("background",  orResult);
-		$("#orResult").text( "OR: " + orResult);
-		$("#xorCanvas").css("background", xorResult);
-		$("#xorResult").text("XOR: " + xorResult);
-	};
-	$("#blendButton").on("click", blendFunc);
-	$("#blendButton").click();
-});
-		</script>
+		<script src="bootstrap-colorpicker.min.js"></script>
+		<script src="blend.js"></script>
 	</body>
 </html>
