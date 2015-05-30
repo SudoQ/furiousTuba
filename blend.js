@@ -8,7 +8,10 @@ function xor(x,y){
 	return x ^ y;
 }
 function blend(hex1, hex2, op){
-	return intToHexStr(op(hexStrToInt(hex1), hexStrToInt(hex2)));
+	var i1 = hexStrToInt(hex1);
+	var i2 = hexStrToInt(hex2);
+	var result = op(i1,i2);
+	return intToHexStr(result);
 }
 
 String.prototype.repeat = function( num )
@@ -33,13 +36,13 @@ $(function(){
 		var c1 = $(".color1").colorpicker("getValue", "#000000");
 		var c2 = $(".color2").colorpicker("getValue", "#000000");
 		var andResult = blend(c1, c2, and);
-		var orResult = blend(c2, c2, or);
+		var orResult = blend(c1, c2, or);
 		var xorResult = blend(c1, c2, xor);
-		$("#andCanvas").css("background", andResult);
+		$("#andBox").css("background", andResult);
 		$("#andResult").text( "AND: " + andResult);
-		$("#orCanvas").css("background",  orResult);
+		$("#orBox").css("background",  orResult);
 		$("#orResult").text( "OR: " + orResult);
-		$("#xorCanvas").css("background", xorResult);
+		$("#xorBox").css("background", xorResult);
 		$("#xorResult").text("XOR: " + xorResult);
 	};
 	$(".color1").colorpicker().on('changeColor.colorpicker', blendFunc);
