@@ -1,7 +1,7 @@
 # Furious Tuba
 Color blending using bitwise operators.
 
-[sudoq.github.io/furiousTuba/](http://sudoq.github.io/furiousTuba)
+Try it here: <a href="http://sudoq.github.io/furiousTuba" target="_blank">sudoq.github.io/furiousTuba</a>
 
 Why the furious tuba? I have no clue.
 
